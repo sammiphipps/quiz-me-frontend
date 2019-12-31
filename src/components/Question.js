@@ -1,28 +1,37 @@
-import React from 'react'
+import React, {Component} from 'react'
 import "../styles/Question.css"
 
-const Question = ({question, shuffleArray}) => {
+class Question extends Component {
 
-    const consolidateAnswers = () => {
+    state = {
+        answerOrder: []
+    }
+
+    componentDidMount() {
+        const answerArray = this.rearrangeAnswers()
+        this.setState({ answerOrder: answerArray})
+    }
+
+    consolidateAnswers = () => {
         let answerArray = []
         const correctAnswerObject = {
-            id: question.correct_answer.id,
-            message: question.correct_answer.message,
+            id: this.props.question.correct_answer.id,
+            message: this.props.question.correct_answer.message,
             correct: true
         }
         answerArray = [...answerArray, correctAnswerObject]
-        question.incorrect_answers.forEach(incorrect_answer => {
-           const incorrectAnswerObject = {
-               id: incorrect_answer.id,
-               message: incorrect_answer.message,
-               correct: false
-           }
-           answerArray = [...answerArray, incorrectAnswerObject] 
+        this.props.question. incorrect_answers.forEach(incorrect_answer => {
+            const incorrectAnswerObject = {
+                id: incorrect_answer.id,
+                message: incorrect_answer.message,
+                correct: false
+            }
+            answerArray = [...answerArray, incorrectAnswerObject]
         })
         return answerArray
     }
 
-    const trueFalseRearrange = (answerArray) => {
+    trueFalseRearrange = (answerArray) => {
         if(answerArray[0].message !== "True"){
             const newArray = []
             newArray[0] = answerArray[1]
@@ -33,47 +42,48 @@ const Question = ({question, shuffleArray}) => {
         }
     }
 
-    const multipleChoiceRearrange = (answerArray) => {
-        return shuffleArray(answerArray)
+    multipleChoiceRearrange = (answerArray) => {
+        return this.props.shuffleArray(answerArray)
     }
 
-    const rearrangeAnswers = () => {
-        const answerArray = consolidateAnswers()
-        if(question.answer_type === "boolean"){
-            return trueFalseRearrange(answerArray)
+    rearrangeAnswers = () => {
+        const answerArray = this.consolidateAnswers()
+        if(this.props.question.answer_type === "boolean"){
+            return this.trueFalseRearrange(answerArray)
         } else {
-            return multipleChoiceRearrange(answerArray)
+            return this.multipleChoiceRearrange(answerArray)
         }
     }
 
-    const inputAssignValue = (answer, counter) => {
+    inputAssignValue = (answer, counter) => {
         return (answer.correct)
-            ?<input type="radio" name={`question${question.id}-answer`} value="correct"/>
-            :<input type="radio" name={`question${question.id}-answer`} value={`incorrect${counter}`}/>
+            ?<input type="radio" name={`question${this.props.question.id}-answer`} value="correct"/>
+            :<input type="radio" name={`question${this.props.question.id}-answer`} value={`incorrect${counter}`}/>
     }
 
-    const showAnswers = () => {
+    showAnswers = () => {
         let counter = 0
-        const answerArray = rearrangeAnswers()
-        return answerArray.map(answer => {
+        return this.state.answerOrder.map(answer => {
             if(answer.correct === false){
                 counter = counter + 1
             }
-            return <div key={`question${question.id}-answer${answer.id}`}>
-                {inputAssignValue(answer, counter)}
+            return <div key={`question${this.props.question.id}-answer${answer.id}`}>
+                {this.inputAssignValue(answer, counter)}
                 <label>{answer.message}</label>
             </div>
         })
     }
 
-    return (
-        <li>
-            {question.message}
-            <div className="answers">
-                {showAnswers()}
-            </div>
-        </li>
-    )
+    render(){
+        return (
+            <li>
+                {this.props.question.message}
+                <div className="answers">
+                    {this.showAnswers()}
+                </div>
+            </li>
+        )
+    }
 }
 
 export default Question
