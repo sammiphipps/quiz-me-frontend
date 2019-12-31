@@ -22,12 +22,22 @@ const Question = ({question}) => {
         return answerArray
     }
 
+    const inputAssignValue = (answer, counter) => {
+        return (answer.correct)
+            ?<input type="radio" name={`question${question.id}-answer`} value="correct"/>
+            :<input type="radio" name={`question${question.id}-answer`} value={`incorrect${counter}`}/>
+    }
+
     const showAnswers = () => {
+        let counter = 0
         const answerArray = consolidateAnswers();
         return answerArray.map(answer => {
-            return <div>
-                <input type="radio" name="answer" id={`question${question.id}-answer${answer.id}`} value={answer.id}/>
-                <label htmlFor={`question${question.id}-answer${answer.id}`}>{answer.message}</label>
+            if(answer.correct === false){
+                counter = counter + 1
+            }
+            return <div key={`question${question.id}-answer${answer.id}`}>
+                {inputAssignValue(answer, counter)}
+                <label>{answer.message}</label>
             </div>
         })
     }
