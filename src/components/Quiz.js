@@ -5,7 +5,13 @@ import "../styles/Quiz.css"
  class Quiz extends Component {
     state = {
         gradeClicked: false,
+        currentQuestionOrder: [],
         score: 0
+    }
+
+    componentDidMount() {
+        const newOrder = this.shuffleArray(this.props.questions)
+        this.setState({currentQuestionOrder: newOrder})
     }
 
     shuffleArray = (array) => {
@@ -21,8 +27,8 @@ import "../styles/Quiz.css"
     }
 
     questionMap = () => {
-        return this.shuffleArray(this.props.questions).map(question => {
-            return <Question key={question.id} question={question} shuffleArray={this.shuffleArray}/>
+        return this.state.currentQuestionOrder.map(question => {
+            return <Question key={question.id} question={question} shuffleArray={this.shuffleArray} />
         })
     }
 

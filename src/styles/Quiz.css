@@ -8,6 +8,10 @@
     margin-top: 0;
 }
 
+.score > p > span {
+    margin-left: 0.5rem;
+}
+
 form {
     display: flex;
     flex-direction: column;
