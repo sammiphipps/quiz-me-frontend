@@ -1,3 +1,7 @@
+.answers {
+    display: flex;
+    flex-direction: column;
+}
 
 .answers > div {
     display: inline-block;
