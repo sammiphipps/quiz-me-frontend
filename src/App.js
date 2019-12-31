@@ -7,6 +7,12 @@ function App() {
     <div className="App">
       <header>
         <h1>QuizMe</h1>
+        <nav>
+          <ul>
+            <li>Take Quiz</li>
+            <li>Manage Questions</li>
+          </ul>
+        </nav>
       </header>
       <main>
         <QuizMePage />
