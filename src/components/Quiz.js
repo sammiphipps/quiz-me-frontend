@@ -8,9 +8,21 @@ import "../styles/Quiz.css"
         score: 0
     }
 
+    shuffleArray = (array) => {
+        const indexUsed = []
+        return array.map((value, currentIndex, array) => {
+            let randomIndex
+            do {
+                randomIndex = Math.floor(Math.random() * array.length)
+            } while (indexUsed.includes(randomIndex))
+            indexUsed.push(randomIndex)
+            return array[randomIndex]
+        })
+    }
+
     questionMap = () => {
-        return this.props.questions.map(question => {
-            return <Question key={question.id} question={question} />
+        return this.shuffleArray(this.props.questions).map(question => {
+            return <Question key={question.id} question={question} shuffleArray={this.shuffleArray}/>
         })
     }
 

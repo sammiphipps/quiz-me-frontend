@@ -1,7 +1,7 @@
 import React from 'react'
 import "../styles/Question.css"
 
-const Question = ({question}) => {
+const Question = ({question, shuffleArray}) => {
 
     const consolidateAnswers = () => {
         let answerArray = []
@@ -34,15 +34,7 @@ const Question = ({question}) => {
     }
 
     const multipleChoiceRearrange = (answerArray) => {
-        const indexUsed = []
-        return answerArray.map((answer, currentIndex, array )=> {
-            let randomIndex
-            do{
-                randomIndex = Math.floor(Math.random() * answerArray.length)
-            } while( indexUsed.includes(randomIndex))
-            indexUsed.push(randomIndex)
-            return array[randomIndex]
-        })
+        return shuffleArray(answerArray)
     }
 
     const rearrangeAnswers = () => {
