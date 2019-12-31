@@ -22,6 +22,38 @@ const Question = ({question}) => {
         return answerArray
     }
 
+    const trueFalseRearrange = (answerArray) => {
+        if(answerArray[0].message !== "True"){
+            const newArray = []
+            newArray[0] = answerArray[1]
+            newArray[1] = answerArray[0] 
+            return newArray
+        } else {
+            return answerArray
+        }
+    }
+
+    const multipleChoiceRearrange = (answerArray) => {
+        const indexUsed = []
+        return answerArray.map((answer, currentIndex, array )=> {
+            let randomIndex
+            do{
+                randomIndex = Math.floor(Math.random() * answerArray.length)
+            } while( indexUsed.includes(randomIndex))
+            indexUsed.push(randomIndex)
+            return array[randomIndex]
+        })
+    }
+
+    const rearrangeAnswers = () => {
+        const answerArray = consolidateAnswers()
+        if(question.answer_type === "boolean"){
+            return trueFalseRearrange(answerArray)
+        } else {
+            return multipleChoiceRearrange(answerArray)
+        }
+    }
+
     const inputAssignValue = (answer, counter) => {
         return (answer.correct)
             ?<input type="radio" name={`question${question.id}-answer`} value="correct"/>
@@ -30,7 +62,7 @@ const Question = ({question}) => {
 
     const showAnswers = () => {
         let counter = 0
-        const answerArray = consolidateAnswers();
+        const answerArray = rearrangeAnswers()
         return answerArray.map(answer => {
             if(answer.correct === false){
                 counter = counter + 1
