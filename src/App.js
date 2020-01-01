@@ -4,9 +4,31 @@ import './App.css';
 import QuizMePage from './components/QuizMePage'
 import ManageQuestions from './components/ManageQuestions'
 
+const backendUrl = 'http://localhost:3000/'
 class App extends Component {
   state = {
+    categories: [],
+    questions: [],
     componentShowing: "Quiz"
+  }
+
+  componentDidMount(){
+    fetch(`${backendUrl}/categories`)
+        .then(response => response.json())
+        .then(categories => {
+            return categories.forEach(category => {
+                const categoryData = {
+                    id: category.id,
+                    name: category.name
+                }
+                this.setState({categories: [...this.state.categories, categoryData]})
+            })
+        })
+        .then(
+            fetch(`${backendUrl}/questions`)
+                .then(response => response.json())
+                .then(questions => this.setState({ questions }))
+        )
   }
 
   handleNavClick = (value) => {
@@ -28,7 +50,7 @@ class App extends Component {
         <main>
           {
             (this.state.componentShowing == "Quiz")
-              ?<QuizMePage />
+              ?<QuizMePage categories={this.state.categories} questions={this.state.questions}/>
               :<ManageQuestions />
           }
         </main>
