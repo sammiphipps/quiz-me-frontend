@@ -71,12 +71,14 @@ class ManageQuestions extends Component {
                         :<TabContent 
                             editCategoryForm={this.state.editCategoryForm}
                             showQuestionForm={this.state.showQuestionForm}
-                            category={this.props.categories[this.state.categoryShowing]} 
+                            categories={this.props.categories}
+                            categoryShowing={this.state.categoryShowing}
                             questions={this.props.questions.filter(question => question.category_id === this.props.categories[this.state.categoryShowing].id)}
                             setShowQuestionForm={this.setShowQuestionForm}
                             setEditCategoryForm={this.setEditCategoryForm}
                             removeCategory={this.handleRemove}
                             editCategory={this.props.editCategory}
+                            addQuestion={this.props.addQuestion}
                         />
                 }
 

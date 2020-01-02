@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import '../styles/TabContent.css'
 
-import QuestionForm from './QuestionForm'
+import AddQuestionForm from './AddQuestionForm'
 import CategoryContent from './CategoryContent'
 import EditCategoryForm from './EditCategoryForm'
 
@@ -19,21 +19,24 @@ class TabContent extends Component {
 
     render(){
         return(
-            <div id={this.props.category.id} className="tabcontent">
+            <div id={this.props.categories[this.props.categoryShowing].id} className="tabcontent">
             {
                 (this.props.showQuestionForm)
-                    ?<QuestionForm 
+                    ?<AddQuestionForm 
                         question={this.props.questions[this.state.indexQuestionEditing]} 
                         title="Add Question Form"
+                        categories={this.props.categories}
+                        currentCategory={this.props.categoryShowing}
+                        addQuestion={this.props.addQuestion}
                     />
                     :(this.props.editCategoryForm)
                         ?<EditCategoryForm 
-                            category={this.props.category}
+                            category={this.props.categories[this.props.categoryShowing]}
                             editCategory={this.props.editCategory}
                         />
                         :<CategoryContent 
-                            key={this.props.category.id} 
-                            category={this.props.category} 
+                            key={this.props.categories[this.props.categoryShowing].id} 
+                            category={this.props.categories[this.props.categoryShowing]} 
                             questions={this.props.questions}
                             showQuestionForm={this.showQuestionForm}
                             setShowQuestionFormState={this.props.setShowQuestionForm}
