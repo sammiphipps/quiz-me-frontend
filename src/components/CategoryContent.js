@@ -14,6 +14,10 @@ class CategoryContent extends Component{
         })
     }
 
+    addQuestionClick = event => {
+        this.props.setShowQuestionFormState(true)
+    }
+
     editCategoryClick = event => {
         this.props.setEditCategoryForm(true)
     }
@@ -32,7 +36,7 @@ class CategoryContent extends Component{
                             :<ul>{this.questionMap()}</ul>
                     }
                     <div className="categoryFormButtons">
-                        <button>Add Question to Category</button>
+                        <button onClick={this.addQuestionClick}>Add Question to Category</button>
                         <button onClick={this.editCategoryClick}>Edit Category Name</button>
                         <button onClick={this.removeCategoryClick}>Remove Category</button>
                     </div>

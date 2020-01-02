@@ -10,13 +10,6 @@ class TabContent extends Component {
         indexQuestionEditing: -1
     }
 
-    // resetState = () => {
-    //     this.setState({
-    //         indexQuestionEditing: -1
-    //     })
-    //     this.props.setShowQuestionFormState(false)
-    // }
-
     showQuestionForm = (questionIndex) => {
         this.setState({
             indexQuestionEditing: questionIndex
@@ -31,7 +24,7 @@ class TabContent extends Component {
                 (this.props.showQuestionForm)
                     ?<QuestionForm 
                         question={this.props.questions[this.state.indexQuestionEditing]} 
-                        // backToCategoryContent={this.resetState}
+                        title="Add Question Form"
                     />
                     :(this.props.editCategoryForm)
                         ?<EditCategoryForm 
@@ -43,6 +36,7 @@ class TabContent extends Component {
                             category={this.props.category} 
                             questions={this.props.questions}
                             showQuestionForm={this.showQuestionForm}
+                            setShowQuestionFormState={this.props.setShowQuestionForm}
                             setEditCategoryForm={this.props.setEditCategoryForm}
                             removeCategory={this.props.removeCategory}
                         />
