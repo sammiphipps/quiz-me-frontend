@@ -110,13 +110,14 @@ class App extends Component {
           })
         })
 
-        return newQuestion
-      }).then(newQuestion => {
-        newQuestion["correct_answer"] = correctAnswerObject
-        newQuestion["incorrect_answers"] = incorrectAnswerArray
-
-        const newQuestionArray = [...this.state.questions, newQuestion]
-        this.setState({ questions: newQuestionArray })
+        return newQuestion.id
+      }).then(newQuestionID => {
+        fetch(`${backendUrl}/questions/${newQuestionID}`)
+          .then(newResponse => newResponse.json())
+          .then(newQuestion => {
+            const newQuestionArray = [...this.state.questions, newQuestion]
+            this.setState({questions: newQuestionArray})
+          })
       })
   }
 
