@@ -14,6 +14,10 @@ class CategoryContent extends Component{
         })
     }
 
+    removeCategoryClick = event => {
+        this.props.removeCategory(this.props.category.id)
+    }
+
     render(){
         return (
                 <>
@@ -26,7 +30,7 @@ class CategoryContent extends Component{
                     <div className="categoryFormButtons">
                         <button>Add Question to Category</button>
                         <button>Edit Category Name</button>
-                        <button>Remove Category</button>
+                        <button onClick={this.removeCategoryClick}>Remove Category</button>
                     </div>
                 </>
         )

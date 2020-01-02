@@ -52,6 +52,14 @@ class App extends Component {
       })
   }
 
+  removeCategory = (categoryId) => {
+    fetch(`${backendUrl}/categories/${categoryId}`, { method: "DELETE" })
+      .then(() => {
+        const newCategoryArray = this.state.categories.filter(category => category.id !== categoryId)
+        this.setState({categories: newCategoryArray})
+      })
+  }
+
   render(){
     return (
       <div className="App">
@@ -67,8 +75,16 @@ class App extends Component {
         <main>
           {
             (this.state.componentShowing === "Quiz")
-              ?<QuizMePage categories={this.state.categories} questions={this.state.questions}/>
-              :<ManageQuestions categories={this.state.categories} questions={this.state.questions} addCategory={this.addCategory}/>
+              ?<QuizMePage 
+                categories={this.state.categories} 
+                questions={this.state.questions}
+              />
+              :<ManageQuestions 
+                categories={this.state.categories} 
+                questions={this.state.questions} 
+                addCategory={this.addCategory}
+                removeCategory={this.removeCategory}
+              />
           }
         </main>
       </div>
