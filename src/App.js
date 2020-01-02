@@ -78,6 +78,49 @@ class App extends Component {
     })
   }
 
+  addQuestion = (questionObject, correctAnswerObject, incorrectAnswerArray) => {
+    fetch(`${backendUrl}/questions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(questionObject)
+    }).then(response => response.json())
+      .then(newQuestion => {
+        const newQuestionID = newQuestion.id
+        correctAnswerObject["question_id"] = newQuestionID
+
+        fetch(`${backendUrl}/correct_answers`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(correctAnswerObject)
+        })
+
+        incorrectAnswerArray.forEach(incorrectAnswerObject => {
+          incorrectAnswerObject["question_id"] = newQuestionID
+
+          fetch(`${backendUrl}/incorrect_answers`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(incorrectAnswerObject)
+          })
+        })
+
+        return newQuestion.id
+      }).then(newQuestionID => {
+        fetch(`${backendUrl}/questions/${newQuestionID}`)
+          .then(newResponse => newResponse.json())
+          .then(newQuestion => {
+            const newQuestionArray = [...this.state.questions, newQuestion]
+            this.setState({questions: newQuestionArray})
+          })
+      })
+  }
+
   render(){
     return (
       <div className="App">
@@ -103,6 +146,7 @@ class App extends Component {
                 addCategory={this.addCategory}
                 removeCategory={this.removeCategory}
                 editCategory={this.editCategory}
+                addQuestion={this.addQuestion}
               />
           }
         </main>

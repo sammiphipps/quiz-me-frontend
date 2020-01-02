@@ -28,7 +28,7 @@ class EditCategoryForm extends Component {
 
     render(){
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="categoryForm">
                 <fieldset>
                     <label htmlFor={`editName${this.props.category.id}`}>Category Name:</label>
                     <input 

@@ -1,11 +1,11 @@
-form > fieldset { 
+.categoryForm > fieldset { 
     border: none;
 }
 
-form > fieldset > label {
+.categoryForm > fieldset > label {
     margin-right: 0.5rem;
 }
 
-form > button {
+.categoryForm > button {
     font-size: medium;
 }
