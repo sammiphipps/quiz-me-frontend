@@ -2,11 +2,16 @@ import React, {Component} from 'react'
 import '../styles/ManageQuestions.css'
 
 import TabContent from './TabContent'
-import CategoryForm from './CategoryForm'
+import AddCategoryForm from './AddCategoryForm'
 class ManageQuestions extends Component {
 
     state = {
+        editCategoryForm: false,
         showQuestionForm: false,
+    }
+
+    setEditCategoryForm = (value) => {
+        this.setState({ editCategoryForm: value})
     }
 
     setShowQuestionFormState = (value) => {
@@ -27,11 +32,14 @@ class ManageQuestions extends Component {
         return this.props.categories.map(category => {
             return <TabContent 
                     key={category.id} 
+                    editCategoryForm={this.state.editCategoryForm}
                     showQuestionForm={this.state.showQuestionForm}
                     category={category} 
                     questions={this.props.questions.filter(question => question.category_id === category.id)}
                     setShowQuestionFormState={this.setShowQuestionFormState}
+                    setEditCategoryForm={this.setEditCategoryForm}
                     removeCategory={this.props.removeCategory}
+                    editCategory={this.props.editCategory}
                 />
         })
     }
@@ -48,6 +56,9 @@ class ManageQuestions extends Component {
         }
         document.getElementById(categoryId).style.display = "block";
         event.currentTarget.className += " active";
+
+        this.setShowQuestionFormState(false)
+        this.setEditCategoryForm(false)
     }
 
     render(){
@@ -64,7 +75,7 @@ class ManageQuestions extends Component {
                 {this.categoryMapTabContent()}
     
                 <div id='addCategory' className="tabcontent">
-                    <CategoryForm key="categoryForm" addCategory={this.props.addCategory}/>
+                    <AddCategoryForm key="categoryForm" addCategory={this.props.addCategory}/>
                 </div>
             </div>
         )

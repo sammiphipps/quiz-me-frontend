@@ -14,6 +14,10 @@ class CategoryContent extends Component{
         })
     }
 
+    editCategoryClick = event => {
+        this.props.setEditCategoryForm(true)
+    }
+
     removeCategoryClick = event => {
         this.props.removeCategory(this.props.category.id)
     }
@@ -29,7 +33,7 @@ class CategoryContent extends Component{
                     }
                     <div className="categoryFormButtons">
                         <button>Add Question to Category</button>
-                        <button>Edit Category Name</button>
+                        <button onClick={this.editCategoryClick}>Edit Category Name</button>
                         <button onClick={this.removeCategoryClick}>Remove Category</button>
                     </div>
                 </>
