@@ -60,6 +60,24 @@ class App extends Component {
       })
   }
 
+  editCategory = (categoryObject) => {
+    fetch(`${backendUrl}/categories/${categoryObject.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(categoryObject)
+    }).then(() => {
+      const newArray = this.state.categories.map(category => {
+        if(category.id === categoryObject.id){
+          Object.assign(category, categoryObject)
+        }
+        return category
+      })
+      this.setState({categories: newArray})
+    })
+  }
+
   render(){
     return (
       <div className="App">
@@ -84,6 +102,7 @@ class App extends Component {
                 questions={this.state.questions} 
                 addCategory={this.addCategory}
                 removeCategory={this.removeCategory}
+                editCategory={this.editCategory}
               />
           }
         </main>
