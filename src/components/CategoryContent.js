@@ -10,7 +10,7 @@ class CategoryContent extends Component{
 
     questionMap = () => {
         return this.props.questions.map(question => {
-            return <li key={question.id} onClick={event => this.editQuestion(question)}>{question.message}</li>
+            return <li key={question.id}>{question.message}</li>
         })
     }
 

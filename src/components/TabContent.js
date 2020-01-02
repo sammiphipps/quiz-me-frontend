@@ -14,7 +14,7 @@ class TabContent extends Component {
         this.setState({
             indexQuestionEditing: questionIndex
         })
-        this.props.setShowQuestionFormState(true)
+        this.props.setShowQuestionForm(true)
     }
 
     render(){
@@ -23,7 +23,6 @@ class TabContent extends Component {
             {
                 (this.props.showQuestionForm)
                     ?<AddQuestionForm 
-                        question={this.props.questions[this.state.indexQuestionEditing]} 
                         title="Add Question Form"
                         categories={this.props.categories}
                         currentCategory={this.props.categoryShowing}
