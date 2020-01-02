@@ -1,13 +1,11 @@
-.tabcontent > ul > li:hover {
-    color: purple;
-    cursor: pointer;
+form > fieldset { 
+    border: none;
 }
 
-.categoryFormButtons{
-    display: flex;
-    justify-content: space-around;
+form > fieldset > label {
+    margin-right: 0.5rem;
 }
 
-.categoryFormButtons > button {
+form > button {
     font-size: medium;
 }

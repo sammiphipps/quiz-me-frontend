@@ -6,29 +6,28 @@ import CategoryContent from './CategoryContent'
 
 class TabContent extends Component {
     state={
-        showQuestionForm: false,
         indexQuestionEditing: -1
     }
 
     resetState = () => {
         this.setState({
-            showQuestionForm: false,
             indexQuestionEditing: -1
         })
+        this.props.setShowQuestionFormState(false)
     }
 
     showQuestionForm = (questionIndex) => {
         this.setState({
-            showQuestionForm: true,
             indexQuestionEditing: questionIndex
         })
+        this.props.setShowQuestionFormState(true)
     }
 
     render(){
         return(
             <div id={this.props.category.id} className="tabcontent">
             {
-                (this.state.showQuestionForm)
+                (this.props.showQuestionForm)
                     ?<QuestionForm 
                         question={this.props.questions[this.state.indexQuestionEditing]} 
                         backToCategoryContent={this.resetState}

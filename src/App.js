@@ -35,22 +35,22 @@ class App extends Component {
     this.setState({ componentShowing: value})
   } 
 
-  // addCategory = (categoryObject) => {
-  //   fetch(`${backendUrl}/categories`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({categoryObject})
-  //   }).then(response => response.json())
-  //     .then(newCategory => {
-  //       const categoryData = {
-  //         id: newCategory.id,
-  //         name: newCategory.name
-  //       }
-  //       this.setState({categories: [...this.state.categories, categoryData]})
-  //     })
-  // }
+  addCategory = (categoryObject) => {
+    fetch(`${backendUrl}/categories`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(categoryObject)
+    }).then(response => response.json())
+      .then(newCategory => {
+        const categoryData = {
+          id: newCategory.id,
+          name: newCategory.name
+        }
+        this.setState({categories: [...this.state.categories, categoryData]})
+      })
+  }
 
   render(){
     return (

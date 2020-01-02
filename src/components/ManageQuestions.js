@@ -2,7 +2,16 @@ import React, {Component} from 'react'
 import '../styles/ManageQuestions.css'
 
 import TabContent from './TabContent'
+import CategoryForm from './CategoryForm'
 class ManageQuestions extends Component {
+
+    state = {
+        showQuestionForm: false,
+    }
+
+    setShowQuestionFormState = (value) => {
+        this.setState({showQuestionForm: value})
+    }
 
     categoryMapTabs = () => {
         return this.props.categories.map(category => {
@@ -16,7 +25,13 @@ class ManageQuestions extends Component {
 
     categoryMapTabContent = () => {
         return this.props.categories.map(category => {
-            return <TabContent key={category.id} category={category} questions={this.props.questions.filter(question => question.category_id === category.id)}/>
+            return <TabContent 
+                    key={category.id} 
+                    showQuestionForm={this.state.showQuestionForm}
+                    category={category} 
+                    questions={this.props.questions.filter(question => question.category_id === category.id)}
+                    setShowQuestionFormState={this.setShowQuestionFormState}
+                />
         })
     }
 
@@ -48,11 +63,7 @@ class ManageQuestions extends Component {
                 {this.categoryMapTabContent()}
     
                 <div id='addCategory' className="tabcontent">
-                    <form>
-                        <label htmlFor="name">New Category Name:</label>
-                        <input type='text' id="name" name="name"></input>
-                        <button type="submit">Submit</button>
-                    </form>
+                    <CategoryForm key="categoryForm" addCategory={this.props.addCategory}/>
                 </div>
             </div>
         )
