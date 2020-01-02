@@ -35,6 +35,23 @@ class App extends Component {
     this.setState({ componentShowing: value})
   } 
 
+  // addCategory = (categoryObject) => {
+  //   fetch(`${backendUrl}/categories`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({categoryObject})
+  //   }).then(response => response.json())
+  //     .then(newCategory => {
+  //       const categoryData = {
+  //         id: newCategory.id,
+  //         name: newCategory.name
+  //       }
+  //       this.setState({categories: [...this.state.categories, categoryData]})
+  //     })
+  // }
+
   render(){
     return (
       <div className="App">
@@ -49,9 +66,9 @@ class App extends Component {
         </header>
         <main>
           {
-            (this.state.componentShowing == "Quiz")
+            (this.state.componentShowing === "Quiz")
               ?<QuizMePage categories={this.state.categories} questions={this.state.questions}/>
-              :<ManageQuestions />
+              :<ManageQuestions categories={this.state.categories} questions={this.state.questions} addCategory={this.addCategory}/>
           }
         </main>
       </div>
