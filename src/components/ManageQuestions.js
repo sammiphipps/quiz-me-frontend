@@ -6,8 +6,19 @@ import AddCategoryForm from './AddCategoryForm'
 class ManageQuestions extends Component {
 
     state = {
+        addCategory: false,
+        categoryShowing: 0,
         editCategoryForm: false,
         showQuestionForm: false,
+    }
+
+    setAddCategory = (value) => {
+        this.setState({ addCategory: value})
+    }
+
+    setCategoryShowing = (category) => {
+        const indexOfCategory = this.props.categories.indexOf(category)
+        this.setState({categoryShowing: indexOfCategory})
     }
 
     setEditCategoryForm = (value) => {
@@ -23,42 +34,22 @@ class ManageQuestions extends Component {
             return <button 
                         key={category.id} 
                         className="tablinks" 
-                        onClick={event => this.viewQuestions(event, category.id)}
+                        onClick={event => this.viewQuestions(category)}
                     >{category.name}</button>
         })
     }
 
-    categoryMapTabContent = () => {
-        return this.props.categories.map(category => {
-            return <TabContent 
-                    key={category.id} 
-                    editCategoryForm={this.state.editCategoryForm}
-                    showQuestionForm={this.state.showQuestionForm}
-                    category={category} 
-                    questions={this.props.questions.filter(question => question.category_id === category.id)}
-                    setShowQuestionForm={this.setShowQuestionForm}
-                    setEditCategoryForm={this.setEditCategoryForm}
-                    removeCategory={this.props.removeCategory}
-                    editCategory={this.props.editCategory}
-                />
-        })
-    }
+    viewQuestions = (category) => {
 
-    viewQuestions = (event, categoryId) => {
-        let i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(categoryId).style.display = "block";
-        event.currentTarget.className += " active";
-
+        this.setCategoryShowing(category)
+        this.setAddCategory(false)
         this.setShowQuestionForm(false)
         this.setEditCategoryForm(false)
+    }
+
+    handleRemove = (categoryID) => {
+        this.props.removeCategory(categoryID)
+        this.setState({categoryShowing: 0})
     }
 
     render(){
@@ -68,15 +59,27 @@ class ManageQuestions extends Component {
                     {this.categoryMapTabs()}
                     <button 
                         className="tablinks" 
-                        onClick={event => this.viewQuestions(event, 'addCategory')}
+                        onClick={event => this.setAddCategory(true)}
                     >Add Category</button>
                 </div>
     
-                {this.categoryMapTabContent()}
-    
-                <div id='addCategory' className="tabcontent">
-                    <AddCategoryForm key="categoryForm" addCategory={this.props.addCategory}/>
-                </div>
+                {
+                    (this.state.addCategory)
+                        ?<div id='addCategory' className="tabcontent">
+                            <AddCategoryForm key="categoryForm" addCategory={this.props.addCategory}/>
+                        </div>
+                        :<TabContent 
+                            editCategoryForm={this.state.editCategoryForm}
+                            showQuestionForm={this.state.showQuestionForm}
+                            category={this.props.categories[this.state.categoryShowing]} 
+                            questions={this.props.questions.filter(question => question.category_id === this.props.categories[this.state.categoryShowing].id)}
+                            setShowQuestionForm={this.setShowQuestionForm}
+                            setEditCategoryForm={this.setEditCategoryForm}
+                            removeCategory={this.handleRemove}
+                            editCategory={this.props.editCategory}
+                        />
+                }
+
             </div>
         )
     }

@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     categories: [],
     questions: [],
-    componentShowing: "Quiz"
+    componentShowing: "Quiz",
   }
 
   componentDidMount(){
