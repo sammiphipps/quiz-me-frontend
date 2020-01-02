@@ -37,6 +37,7 @@ class TabContent extends Component {
                         category={this.props.category} 
                         questions={this.props.questions}
                         showQuestionForm={this.showQuestionForm}
+                        removeCategory={this.props.removeCategory}
                     />
             }
             </div>
