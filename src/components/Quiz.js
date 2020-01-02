@@ -46,6 +46,8 @@ import "../styles/Quiz.css"
             gradeClicked: true,
             score: sumCorrectAmount
         })
+
+        window.scrollTo(0,0)
     }
 
     determineScoreColor = () => {
