@@ -14,7 +14,7 @@ class ManageQuestions extends Component {
         this.setState({ editCategoryForm: value})
     }
 
-    setShowQuestionFormState = (value) => {
+    setShowQuestionForm = (value) => {
         this.setState({showQuestionForm: value})
     }
 
@@ -36,7 +36,7 @@ class ManageQuestions extends Component {
                     showQuestionForm={this.state.showQuestionForm}
                     category={category} 
                     questions={this.props.questions.filter(question => question.category_id === category.id)}
-                    setShowQuestionFormState={this.setShowQuestionFormState}
+                    setShowQuestionForm={this.setShowQuestionForm}
                     setEditCategoryForm={this.setEditCategoryForm}
                     removeCategory={this.props.removeCategory}
                     editCategory={this.props.editCategory}
@@ -57,7 +57,7 @@ class ManageQuestions extends Component {
         document.getElementById(categoryId).style.display = "block";
         event.currentTarget.className += " active";
 
-        this.setShowQuestionFormState(false)
+        this.setShowQuestionForm(false)
         this.setEditCategoryForm(false)
     }
 
