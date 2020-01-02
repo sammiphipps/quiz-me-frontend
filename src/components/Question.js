@@ -20,7 +20,7 @@ class Question extends Component {
             correct: true
         }
         answerArray = [...answerArray, correctAnswerObject]
-        this.props.question. incorrect_answers.forEach(incorrect_answer => {
+        this.props.question.incorrect_answers.forEach(incorrect_answer => {
             const incorrectAnswerObject = {
                 id: incorrect_answer.id,
                 message: incorrect_answer.message,

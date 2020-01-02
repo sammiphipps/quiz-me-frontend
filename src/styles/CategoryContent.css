@@ -1,0 +1,13 @@
+.tabcontent > ul > li:hover {
+    color: purple;
+    cursor: pointer;
+}
+
+.categoryFormButtons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.categoryFormButtons > button {
+    font-size: medium;
+}

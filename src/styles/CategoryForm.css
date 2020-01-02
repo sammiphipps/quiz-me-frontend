@@ -1,0 +1,11 @@
+form > fieldset { 
+    border: none;
+}
+
+form > fieldset > label {
+    margin-right: 0.5rem;
+}
+
+form > button {
+    font-size: medium;
+}
