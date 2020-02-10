@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import '../styles/ManageQuestions.css'
+import '../../styles/ManageQuestions.css'
 
 import TabContent from './TabContent'
 import AddCategoryForm from './AddCategoryForm'

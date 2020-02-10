@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import CategorySelection from './CategorySelection'
-import Quiz from './Quiz.js'
+import Quiz from './Quiz'
 
 class QuizMePage extends Component {
     state = {

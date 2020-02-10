@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import QuizMePage from './components/QuizMePage'
-import ManageQuestions from './components/ManageQuestions'
+import QuizMePage from './components/QuizMePage/QuizMePage.js'
+import ManageQuestions from './components/ManageQuestions/ManageQuestions.js'
 
 const backendUrl = 'http://localhost:3000/'
 class App extends Component {

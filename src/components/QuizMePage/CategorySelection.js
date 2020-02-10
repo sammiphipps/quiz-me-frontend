@@ -1,5 +1,5 @@
 import React from 'react'
-import "../styles/CategorySelection.css"
+import "../../styles/CategorySelection.css"
 
 const CategorySelection = ({categories, setQuizCategoryIndex}) => {
 

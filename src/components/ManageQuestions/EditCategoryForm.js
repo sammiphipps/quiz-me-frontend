@@ -1,9 +1,15 @@
 import React, {Component} from 'react'
-import '../styles/CategoryForm.css'
+import '../../styles/CategoryForm.css'
 
-class AddCategoryForm extends Component {
+class EditCategoryForm extends Component {
     state = {
         name: ''
+    }
+
+    componentDidMount(){
+        if(this.props.category){
+            this.setState({name: this.props.category.name})
+        }
     }
 
     handleChange = event => {
@@ -13,17 +19,21 @@ class AddCategoryForm extends Component {
     handleSubmit = event => {
         event.preventDefault()
         const formData = new FormData(event.target)
-        this.props.addCategory({name: formData.get('name')})
+        const newCategoryObject = {
+            id: this.props.category.id,
+            name: formData.get('name')
+        }
+        this.props.editCategory(newCategoryObject)
     }
 
     render(){
         return (
             <form onSubmit={this.handleSubmit} className="categoryForm">
                 <fieldset>
-                    <label htmlFor="name">New Category Name:</label>
+                    <label htmlFor={`editName${this.props.category.id}`}>Category Name:</label>
                     <input 
                         type='text' 
-                        id="name" 
+                        id={`editName${this.props.category.id}`}
                         name="name" 
                         value={this.state.name} 
                         onChange={this.handleChange}
@@ -35,4 +45,4 @@ class AddCategoryForm extends Component {
     }
 }
 
-export default AddCategoryForm
+export default EditCategoryForm
