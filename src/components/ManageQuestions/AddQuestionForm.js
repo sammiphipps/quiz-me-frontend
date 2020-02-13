@@ -55,7 +55,8 @@ class AddQuestionForm extends Component {
             }
             incorrectAnswers.push(incorrectAnswerObject2, incorrectAnswerObject3)
         }
-        this.props.addQuestion(newQuestionObject, correctAnswerObject, incorrectAnswers)
+
+        this.props.addQuestion({question: newQuestionObject, correct_answer: correctAnswerObject, incorrect_answers: incorrectAnswers})
     }
 
     loadCategoryDropdown = () => {
