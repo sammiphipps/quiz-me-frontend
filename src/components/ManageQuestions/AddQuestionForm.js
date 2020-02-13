@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import "../styles/QuestionForm.css"
+import "../../styles/QuestionForm.css"
 
 class AddQuestionForm extends Component {
 
@@ -55,8 +55,8 @@ class AddQuestionForm extends Component {
             }
             incorrectAnswers.push(incorrectAnswerObject2, incorrectAnswerObject3)
         }
-        
-        this.props.addQuestion(newQuestionObject, correctAnswerObject, incorrectAnswers)
+
+        this.props.addQuestion({question: newQuestionObject, correct_answer: correctAnswerObject, incorrect_answers: incorrectAnswers})
     }
 
     loadCategoryDropdown = () => {
@@ -64,7 +64,6 @@ class AddQuestionForm extends Component {
             return <option key={category.id} value={category.id}>{category.name}</option>
         })
     }
-
     render(){
         return(
             <form className="questionForm" onSubmit={this.handleSubmit}>

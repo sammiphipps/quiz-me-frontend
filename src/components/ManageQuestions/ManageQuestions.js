@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import '../styles/ManageQuestions.css'
+import '../../styles/ManageQuestions.css'
 
 import TabContent from './TabContent'
 import AddCategoryForm from './AddCategoryForm'
@@ -40,7 +40,6 @@ class ManageQuestions extends Component {
     }
 
     viewQuestions = (category) => {
-
         this.setCategoryShowing(category)
         this.setAddCategory(false)
         this.setShowQuestionForm(false)

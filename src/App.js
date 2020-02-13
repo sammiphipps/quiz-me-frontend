@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import QuizMePage from './components/QuizMePage'
-import ManageQuestions from './components/ManageQuestions'
+import QuizMePage from './components/QuizMePage/QuizMePage.js'
+import ManageQuestions from './components/ManageQuestions/ManageQuestions.js'
 
-const backendUrl = 'http://localhost:3000/'
+const backendUrl = 'http://localhost:3000'
 class App extends Component {
   state = {
     categories: [],
@@ -78,46 +78,16 @@ class App extends Component {
     })
   }
 
-  addQuestion = (questionObject, correctAnswerObject, incorrectAnswerArray) => {
-    fetch(`${backendUrl}/questions`, {
+  addQuestion = (newQuestionSubmition) => {
+    fetch(`${backendUrl}/question-with-answers`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(questionObject)
+      body: JSON.stringify(newQuestionSubmition)
     }).then(response => response.json())
       .then(newQuestion => {
-        const newQuestionID = newQuestion.id
-        correctAnswerObject["question_id"] = newQuestionID
-
-        fetch(`${backendUrl}/correct_answers`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(correctAnswerObject)
-        })
-
-        incorrectAnswerArray.forEach(incorrectAnswerObject => {
-          incorrectAnswerObject["question_id"] = newQuestionID
-
-          fetch(`${backendUrl}/incorrect_answers`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(incorrectAnswerObject)
-          })
-        })
-
-        return newQuestion.id
-      }).then(newQuestionID => {
-        fetch(`${backendUrl}/questions/${newQuestionID}`)
-          .then(newResponse => newResponse.json())
-          .then(newQuestion => {
-            const newQuestionArray = [...this.state.questions, newQuestion]
-            this.setState({questions: newQuestionArray})
-          })
+        this.setState({questions: [...this.state.questions, newQuestion]})
       })
   }
 

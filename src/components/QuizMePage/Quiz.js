@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Question from './Question'
-import "../styles/Quiz.css"
+import "../../styles/Quiz.css"
 
  class Quiz extends Component {
     state = {
