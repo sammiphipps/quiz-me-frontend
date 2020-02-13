@@ -55,7 +55,6 @@ class AddQuestionForm extends Component {
             }
             incorrectAnswers.push(incorrectAnswerObject2, incorrectAnswerObject3)
         }
-        
         this.props.addQuestion(newQuestionObject, correctAnswerObject, incorrectAnswers)
     }
 
@@ -64,7 +63,6 @@ class AddQuestionForm extends Component {
             return <option key={category.id} value={category.id}>{category.name}</option>
         })
     }
-
     render(){
         return(
             <form className="questionForm" onSubmit={this.handleSubmit}>

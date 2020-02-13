@@ -40,7 +40,6 @@ class ManageQuestions extends Component {
     }
 
     viewQuestions = (category) => {
-
         this.setCategoryShowing(category)
         this.setAddCategory(false)
         this.setShowQuestionForm(false)
