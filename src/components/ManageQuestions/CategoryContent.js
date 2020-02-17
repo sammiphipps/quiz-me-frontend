@@ -10,8 +10,12 @@ class CategoryContent extends Component{
 
     questionMap = () => {
         return this.props.questions.map(question => {
-            return <li key={question.id}>{question.message}</li>
+            return <li id={question.id} key={question.id} onClick={this.showViewQuestionForm}>{question.message}</li>
         })
+    }
+
+    showViewQuestionForm = event => {
+        this.props.setIndexQuestionEditing(event.target.id)
     }
 
     addQuestionClick = event => {
