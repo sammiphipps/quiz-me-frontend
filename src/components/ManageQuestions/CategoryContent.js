@@ -15,7 +15,7 @@ class CategoryContent extends Component{
     }
 
     showViewQuestionForm = event => {
-        this.props.setIndexQuestionEditing(event.target.id)
+        this.props.showQuestionForm(event.target.id)
     }
 
     addQuestionClick = event => {

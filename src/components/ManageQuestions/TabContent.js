@@ -10,13 +10,9 @@ class TabContent extends Component {
         indexQuestionEditing: -1
     }
 
-    setIndexQuestionEditing = (value) => {
-        this.setState({indexQuestionEditing: parseInt(value)})
-    }
-
     showQuestionForm = (questionIndex) => {
         this.setState({
-            indexQuestionEditing: questionIndex
+            indexQuestionEditing: parseInt(questionIndex)
         })
         this.props.setShowQuestionForm(true)
     }
@@ -44,7 +40,6 @@ class TabContent extends Component {
                             showQuestionForm={this.showQuestionForm}
                             setShowQuestionFormState={this.props.setShowQuestionForm}
                             setEditCategoryForm={this.props.setEditCategoryForm}
-                            setIndexQuestionEditing={this.setIndexQuestionEditing}
                             removeCategory={this.props.removeCategory}
                         />
             }
