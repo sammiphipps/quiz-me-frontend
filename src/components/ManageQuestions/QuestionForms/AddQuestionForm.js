@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import "../../styles/QuestionForm.css"
+import "../../../styles/QuestionForm.css"
 
 class AddQuestionForm extends Component {
 

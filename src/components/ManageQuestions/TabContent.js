@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import '../../styles/TabContent.css'
 
-import AddQuestionForm from './AddQuestionForm'
+import AddQuestionForm from './QuestionForms/AddQuestionForm'
 import CategoryContent from './CategoryContent'
-import EditCategoryForm from './EditCategoryForm'
+import EditCategoryForm from './CategoryForms/EditCategoryForm'
 
 class TabContent extends Component {
     state={
