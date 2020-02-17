@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-const ViewQuestionForm = (props) => {
+const ViewQuestionForm = ({question}) => {
     return (
         <div className="viewQuestionForm">
             <h3>View Question Information</h3>
