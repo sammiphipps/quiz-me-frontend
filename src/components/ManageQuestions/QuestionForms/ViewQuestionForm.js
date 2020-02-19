@@ -1,19 +1,24 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-const ViewQuestionForm = ({question}) => {
+const ViewQuestionForm = ({question, category}) => {
+
+    const displayIncorrectAnswer = () => {
+        return question.incorrect_answers.map(incorrect_answer => {
+            return <li>{incorrect_answer.message}</li>
+        })
+    }
+
     return (
         <div className="viewQuestionForm">
             <h3>View Question Information</h3>
             <div className="questionInformation">
-                <p>Category:</p>
-                <p>Question:</p>
-                <p>Type of Answer:</p>
-                <p>Correct Answer: </p>
+                <p>Category: {category}</p>
+                <p>Question: {question.message}</p>
+                <p>Type of Answer: {question.answer_type}</p>
+                <p>Correct Answer: {question.correct_answer.message}</p>
                 <p> Incorrect Answers</p>
                 <ul>
-                    <li>Incorrect Answer 1</li>
-                    <li>Incorrect Answer 2</li>
-                    <li>Incorrect Answer 3</li>
+                    {displayIncorrectAnswer()}
                 </ul>
             </div>
         </div>

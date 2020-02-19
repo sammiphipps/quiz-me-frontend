@@ -31,8 +31,8 @@ class TabContent extends Component {
                     />
                     :(this.props.showQuestionForm && this.state.indexQuestionEditing >= 0)
                         ?<ViewQuestionForm 
-                            question={Object.assign({}, this.props.questions.filter(question => question.id == this.state.indexQuestionEditing)[0])}
-                            category={this.props.categories.filter(category => category.id == this.props.questions.filter(question => question.id == this.state.indexQuestionEditing)[0].category_id)[0].name}
+                            question={Object.assign({}, this.props.questions.filter(question => question.id === this.state.indexQuestionEditing)[0])}
+                            category={this.props.categories.filter(category => category.id === this.props.questions.filter(question => question.id === this.state.indexQuestionEditing)[0].category_id)[0].name}
                         />
                         :(this.props.editCategoryForm)
                             ?<EditCategoryForm 
