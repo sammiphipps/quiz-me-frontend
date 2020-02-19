@@ -18,6 +18,20 @@ class TabContent extends Component {
         this.props.setShowQuestionForm(true)
     }
 
+    questionDisplayForViewQuestionForm = () => {
+        return Object.assign({}, this.props.questions.filter(question => {
+            return question.id === this.state.indexQuestionEditing
+        })[0])
+    }
+
+    categoryDisplayforViewQuestionForm = () => {
+        return this.props.categories.filter(category => {
+            return category.id === this.props.questions.filter(question => {
+                return question.id === this.state.indexQuestionEditing
+            })[0].category_id
+        })[0].name
+    }
+
     render(){
         return(
             <div id={this.props.categories[this.props.categoryShowing].id} className="tabcontent">
@@ -31,8 +45,8 @@ class TabContent extends Component {
                     />
                     :(this.props.showQuestionForm && this.state.indexQuestionEditing >= 0)
                         ?<ViewQuestionForm 
-                            question={Object.assign({}, this.props.questions.filter(question => question.id === this.state.indexQuestionEditing)[0])}
-                            category={this.props.categories.filter(category => category.id === this.props.questions.filter(question => question.id === this.state.indexQuestionEditing)[0].category_id)[0].name}
+                            question={this.questionDisplayForViewQuestionForm()}
+                            category={this.categoryDisplayforViewQuestionForm()}
                         />
                         :(this.props.editCategoryForm)
                             ?<EditCategoryForm 
