@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import '../../styles/CategoryForm.css'
+import '../../../styles/CategoryForm.css'
 
 class AddCategoryForm extends Component {
     state = {

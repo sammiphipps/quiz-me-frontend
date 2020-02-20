@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import '../../styles/ManageQuestions.css'
 
 import TabContent from './TabContent'
-import AddCategoryForm from './AddCategoryForm'
+import AddCategoryForm from './CategoryForms/AddCategoryForm'
 class ManageQuestions extends Component {
 
     state = {
