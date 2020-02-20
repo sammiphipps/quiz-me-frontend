@@ -58,7 +58,6 @@ class TabContent extends Component {
                                 category={this.props.categories[this.props.categoryShowing]} 
                                 questions={this.props.questions}
                                 showQuestionForm={this.showQuestionForm}
-                                setShowQuestionFormState={this.props.setShowQuestionForm}
                                 setEditCategoryForm={this.props.setEditCategoryForm}
                                 removeCategory={this.props.removeCategory}
                             />

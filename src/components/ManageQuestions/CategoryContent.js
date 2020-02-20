@@ -19,7 +19,7 @@ class CategoryContent extends Component{
     }
 
     addQuestionClick = event => {
-        this.props.setShowQuestionFormState(true)
+        this.props.showQuestionForm(-1)
     }
 
     editCategoryClick = event => {
