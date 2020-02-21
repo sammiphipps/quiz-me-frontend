@@ -7,7 +7,9 @@ import {
 } from "react-router-dom"
 import './App.css';
 
-import QuizMePage from './components/QuizMePage/QuizMePage.js'
+// import QuizMePage from './components/QuizMePage/QuizMePage.js'
+import CategorySelection from './components/QuizMePage/CategorySelection'
+import Quiz from './components/QuizMePage/Quiz'
 import ManageQuestions from './components/ManageQuestions/ManageQuestions.js'
 
 const backendUrl = 'http://localhost:3000'
@@ -92,6 +94,12 @@ class App extends Component {
       })
   }
 
+  filterQuizCategory = (category_id) => {
+    return this.state.categories.filter(category => {
+      return category.id === category_id
+    })[0]
+  }
+
   render(){
     return (
       <Router>
@@ -113,18 +121,28 @@ class App extends Component {
             <Switch>
               <Route 
                 exact path="/" 
-                render={(props) => <QuizMePage {...props} categories={this.state.categories} questions={this.state.questions}/>}
+                // render={(props) => <QuizMePage {...props} categories={this.state.categories} questions={this.state.questions}/>}
+                render={(props) => (<CategorySelection {...props} categories={this.state.categories}/>) }
+              ></Route>
+              <Route
+                path="/quiz/:category_id"
+                render={ (props) => (<Quiz {...props} 
+                  category={this.filterQuizCategory(parseInt(props.match.params.category_id))}
+                  questions={this.state.questions.filter(question => {
+                    return question.category_id === parseInt(props.match.params.category_id)
+                  })}
+                />)}
               ></Route>
               <Route
                 exact path="/questions"
-                render={ (props) => <ManageQuestions {...props}
+                render={ (props) => (<ManageQuestions {...props}
                   categories={this.state.categories} 
                   questions={this.state.questions} 
                   addCategory={this.addCategory}
                   removeCategory={this.removeCategory}
                   editCategory={this.editCategory}
                   addQuestion={this.addQuestion}
-                />}
+                />)}
               >
               </Route>
             </Switch>
