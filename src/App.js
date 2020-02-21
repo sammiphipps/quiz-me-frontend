@@ -1,4 +1,10 @@
 import React, {Component} from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom"
 import './App.css';
 
 import QuizMePage from './components/QuizMePage/QuizMePage.js'
@@ -9,7 +15,6 @@ class App extends Component {
   state = {
     categories: [],
     questions: [],
-    componentShowing: "Quiz",
   }
 
   componentDidMount(){
@@ -30,10 +35,6 @@ class App extends Component {
                 .then(questions => this.setState({ questions }))
         )
   }
-
-  handleNavClick = (value) => {
-    this.setState({ componentShowing: value})
-  } 
 
   addCategory = (categoryObject) => {
     fetch(`${backendUrl}/categories`, {
@@ -93,34 +94,43 @@ class App extends Component {
 
   render(){
     return (
-      <div className="App">
-        <header>
-          <h1>QuizMe</h1>
-          <nav>
-            <ul>
-              <li onClick={event => this.handleNavClick("Quiz")}>Take Quiz</li>
-              <li onClick={event => this.handleNavClick("Manage Questions")}>Manage Questions</li>
-            </ul>
-          </nav>
-        </header>
-        <main>
-          {
-            (this.state.componentShowing === "Quiz")
-              ?<QuizMePage 
-                categories={this.state.categories} 
-                questions={this.state.questions}
-              />
-              :<ManageQuestions 
-                categories={this.state.categories} 
-                questions={this.state.questions} 
-                addCategory={this.addCategory}
-                removeCategory={this.removeCategory}
-                editCategory={this.editCategory}
-                addQuestion={this.addQuestion}
-              />
-          }
-        </main>
-      </div>
+      <Router>
+        <div className="App">
+          <header>
+            <h1>QuizMe</h1>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Take Quiz</Link>
+                </li>
+                <li>
+                  <Link to="/questions">Manage Questions</Link>
+                </li>
+              </ul>
+            </nav>
+          </header>
+          <main>
+            <Switch>
+              <Route 
+                exact path="/" 
+                render={(props) => <QuizMePage {...props} categories={this.state.categories} questions={this.state.questions}/>}
+              ></Route>
+              <Route
+                exact path="/questions"
+                render={ (props) => <ManageQuestions {...props}
+                  categories={this.state.categories} 
+                  questions={this.state.questions} 
+                  addCategory={this.addCategory}
+                  removeCategory={this.removeCategory}
+                  editCategory={this.editCategory}
+                  addQuestion={this.addQuestion}
+                />}
+              >
+              </Route>
+            </Switch>
+          </main>
+        </div>
+      </Router>
     )
   }
 }
