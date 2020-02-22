@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Question from './Question'
 import "../../styles/Quiz.css"
-import { Redirect } from 'react-router-dom'
 
  class Quiz extends Component {
     state = {
@@ -11,7 +10,7 @@ import { Redirect } from 'react-router-dom'
     }
 
     componentDidMount() {
-        if(this.props.questions.length == 0 || this.props.category == undefined){
+        if(this.props.questions.length === 0 || this.props.category === undefined){
             window.location.href = "/"
         } else {
             const newOrder = this.shuffleArray(this.props.questions)
