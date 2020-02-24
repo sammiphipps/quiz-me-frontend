@@ -6,30 +6,6 @@ import CategoryContent from './CategoryContent'
 import EditCategoryForm from './CategoryForms/EditCategoryForm'
 
 class TabContent extends Component {
-    // state={
-    //     indexQuestionEditing: -1
-    // }
-
-    showQuestionForm = () => {
-        // this.setState({
-        //     indexQuestionEditing: parseInt(questionIndex)
-        // })
-        this.props.setShowQuestionForm(true)
-    }
-
-    // questionDisplayForViewQuestionForm = () => {
-    //     return Object.assign({}, this.props.questions.filter(question => {
-    //         return question.id === this.state.indexQuestionEditing
-    //     })[0])
-    // }
-
-    // categoryDisplayforViewQuestionForm = () => {
-    //     return this.props.categories.filter(category => {
-    //         return category.id === this.props.questions.filter(question => {
-    //             return question.id === this.state.indexQuestionEditing
-    //         })[0].category_id
-    //     })[0].name
-    // }
 
     render(){
         return(
@@ -51,7 +27,7 @@ class TabContent extends Component {
                             key={this.props.categories[this.props.categoryShowing].id} 
                             category={this.props.categories[this.props.categoryShowing]} 
                             questions={this.props.questions}
-                            showQuestionForm={this.showQuestionForm}
+                            setShowQuestionForm={this.props.setShowQuestionForm}
                             setEditCategoryForm={this.props.setEditCategoryForm}
                             removeCategory={this.props.removeCategory}
                         />

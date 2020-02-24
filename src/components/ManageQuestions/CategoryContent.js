@@ -4,23 +4,14 @@ import "../../styles/CategoryContent.css"
 
 class CategoryContent extends Component{
 
-    editQuestion = (question) => {
-        const questionIndex = this.props.questions.indexOf(question)
-        this.props.showQuestionForm(questionIndex)
-    }
-
     questionMap = () => {
         return this.props.questions.map(question => {
             return <li id={question.id} key={question.id}><Link to={`/questions/${question.id}`}>{question.message}</Link></li>
         })
     }
 
-    // showViewQuestionForm = event => {
-    //     this.props.showQuestionForm(event.target.id)
-    // }
-
     addQuestionClick = event => {
-        this.props.showQuestionForm(-1)
+        this.props.setShowQuestionForm(true)
     }
 
     editCategoryClick = event => {
