@@ -1,11 +1,16 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import "../../styles/CategorySelection.css"
 
-const CategorySelection = ({categories, setQuizCategoryIndex}) => {
-
+const CategorySelection = ({categories}) => {
     const showCategories = () => {
         return categories.map(category => {
-            return <div className="category-card" key={category.id}><p onClick={event => setQuizCategoryIndex(category)}>{category.name}</p></div>
+            
+        return <div className="category-card" key={category.id}>
+            <p>
+                <Link to={`/quiz/${category.id}`}>{category.name}</Link>
+            </p>
+        </div>
         })
     }
 

@@ -10,8 +10,12 @@ import "../../styles/Quiz.css"
     }
 
     componentDidMount() {
-        const newOrder = this.shuffleArray(this.props.questions)
-        this.setState({currentQuestionOrder: newOrder})
+        if(this.props.questions.length === 0 || this.props.category === undefined){
+            window.location.href = "/"
+        } else {
+            const newOrder = this.shuffleArray(this.props.questions)
+            return this.setState({currentQuestionOrder: newOrder})
+        }
     }
 
     shuffleArray = (array) => {
@@ -74,7 +78,7 @@ import "../../styles/Quiz.css"
                         :null
                 }
                 <form id="quizForm" onSubmit={this.gradeQuiz}>
-                    <h2>{this.props.category} Quiz</h2>
+                    {/* <h2>{this.props.category} Quiz</h2> */}
                     <ol>
                         {this.questionMap()}
                     </ol>
