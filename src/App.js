@@ -11,6 +11,7 @@ import './App.css';
 import CategorySelection from './components/QuizMePage/CategorySelection'
 import Quiz from './components/QuizMePage/Quiz'
 import ManageQuestions from './components/ManageQuestions/ManageQuestions.js'
+import ViewQuestionForm from './components/ManageQuestions/QuestionForms/ViewQuestionForm';
 
 const backendUrl = 'http://localhost:3000'
 class App extends Component {
@@ -145,6 +146,20 @@ class App extends Component {
                 />)}
               >
               </Route>
+              <Route
+                path="/questions/:id"
+                render={ (props) => (<ViewQuestionForm {...props}
+                  question={Object.assign({}, this.state.questions.filter(question => {
+                    return question.id === parseInt(props.match.params.id)
+                  }))[0]}
+                  category={this.state.categories.filter(category => {
+                    return category.id === this.state.questions.filter( question => {
+                      return question.id === props.match.params.id
+                    })
+                  })}
+                ></ViewQuestionForm>)
+                }
+              ></Route>
             </Switch>
           </main>
         </div>

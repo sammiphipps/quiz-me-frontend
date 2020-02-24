@@ -12,7 +12,7 @@ const ViewQuestionForm = ({question, category}) => {
         <div className="viewQuestionForm">
             <h3>View Question Information</h3>
             <div className="questionInformation">
-                <p>Category: {category}</p>
+                <p>Category: {category}</p> 
                 <p>Question: {question.message}</p>
                 <p>Type of Answer: {question.answer_type}</p>
                 <p>Correct Answer: {question.correct_answer.message}</p>
@@ -25,4 +25,5 @@ const ViewQuestionForm = ({question, category}) => {
     )
 }
 
+//note to self put in a redirect to App.js if props are undefined
 export default ViewQuestionForm

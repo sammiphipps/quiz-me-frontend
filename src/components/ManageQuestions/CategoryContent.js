@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import "../../styles/CategoryContent.css"
 
 class CategoryContent extends Component{
@@ -10,13 +11,13 @@ class CategoryContent extends Component{
 
     questionMap = () => {
         return this.props.questions.map(question => {
-            return <li id={question.id} key={question.id} onClick={this.showViewQuestionForm}>{question.message}</li>
+            return <li id={question.id} key={question.id}><Link to={`/questions/${question.id}`}>{question.message}</Link></li>
         })
     }
 
-    showViewQuestionForm = event => {
-        this.props.showQuestionForm(event.target.id)
-    }
+    // showViewQuestionForm = event => {
+    //     this.props.showQuestionForm(event.target.id)
+    // }
 
     addQuestionClick = event => {
         this.props.showQuestionForm(-1)
