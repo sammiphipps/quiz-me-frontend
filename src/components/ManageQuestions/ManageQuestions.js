@@ -12,6 +12,12 @@ class ManageQuestions extends Component {
         showQuestionForm: false,
     }
 
+    componentDidCatch(){
+        if(this.props.categories.length === 0 || this.props.questions.length === 0){
+            window.location.href = "/"
+        }
+    }
+
     setAddCategory = (value) => {
         this.setState({ addCategory: value})
     }
