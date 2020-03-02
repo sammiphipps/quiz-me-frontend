@@ -152,11 +152,11 @@ class App extends Component {
                   question={Object.assign({}, this.state.questions.filter(question => {
                     return question.id === parseInt(props.match.params.id)
                   }))[0]}
-                  category={this.state.categories.filter(category => {
-                    return category.id === this.state.questions.filter( question => {
-                      return question.id === props.match.params.id
-                    })
-                  })}
+                  questionCategory={this.state.categories.filter(category => {
+                    return category.id === this.state.questions.filter(question => {
+                      return question.id === parseInt(props.match.params.id)
+                    })[0].category_id
+                  })[0]}
                 ></ViewQuestionForm>)
                 }
               ></Route>
