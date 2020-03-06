@@ -19,7 +19,7 @@ class ViewQuestionForm extends Component {
                 ?this.errorHandling()
                 :<div className="viewQuestion">
                     <h3>View Question Information</h3>
-                        <div className="questionInformation">
+                    <div className="questionInformation">
                         <p>Category: {this.props.questionCategory.name}</p> 
                         <p>Question: {this.props.question.message}</p>
                         <p>Type of Answer: {this.props.question.answer_type}</p>
@@ -28,6 +28,10 @@ class ViewQuestionForm extends Component {
                         <ul>
                             {this.displayIncorrectAnswer()}
                         </ul>
+                    </div>
+                    <div className="questionButtons">
+                        <button>Edit Question</button>
+                        <button>Remove Question</button>
                     </div>
                 </div>
         )
