@@ -130,7 +130,7 @@ class App extends Component {
                 render={ (props) => (<Quiz {...props} 
                   category={this.filterQuizCategory(parseInt(props.match.params.category_id))}
                   questions={this.state.questions.filter(question => {
-                    return question.category_id === parseInt(props.match.params.category_id)
+                    return question.category.id === parseInt(props.match.params.category_id)
                   })}
                 />)}
               ></Route>

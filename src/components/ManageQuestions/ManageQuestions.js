@@ -78,7 +78,7 @@ class ManageQuestions extends Component {
                             showQuestionForm={this.state.showQuestionForm}
                             categories={this.props.categories}
                             categoryShowing={this.state.categoryShowing}
-                            questions={this.props.questions.filter(question => question.category_id === this.props.categories[this.state.categoryShowing].id)}
+                            questions={this.props.questions.filter(question => question.category.id === this.props.categories[this.state.categoryShowing].id)}
                             setShowQuestionForm={this.setShowQuestionForm}
                             setEditCategoryForm={this.setEditCategoryForm}
                             removeCategory={this.handleRemoveCategory}

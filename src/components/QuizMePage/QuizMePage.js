@@ -15,7 +15,7 @@ class QuizMePage extends Component {
     pullQuestions = () => {
         return this.props.questions.filter(question => {
             const categoryId = this.props.categories[this.state.quizCategoryIndex].id
-            return question.category_id === categoryId
+            return question.category.id === categoryId
         })
     }
 
