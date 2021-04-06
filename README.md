@@ -1,4 +1,4 @@
-# Initial QuizMe Frontend
+# Original QuizMe Frontend
 
 QuizMe is a web application that allows to quiz themselves based on a specific category. After selecting the category, the quiz will appear with around 20 multiple choice questions that the user will need to go through. Once finished selecting their answers, the user can press the Grade Quiz button at the bottom to show what their score is. In addition, users can manage the questions that appear by going to the Manage Questions tab. This will show what questions are associated with which categories. Users can then add or edit a specific question. In addition, they can add or remove a category. 
 
